@@ -1,0 +1,17 @@
+---
+
+- hosts: servers
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Para nginx
+      service:
+        name: nginx
+        state: stopped
+
+    - name: Desinstala nginx
+      apt: 
+        name: nginx
+        state: absent
+        update_cache: yes

@@ -1,0 +1,34 @@
+---
+
+- hosts: servers
+
+  vars:
+    directorios_a_crear: "{{ lookup('file','../archivos/otros_directorios.txt').split('\n') }}"
+
+  tasks:
+    - name: Obten cantidad de directorios en $HOME
+      shell: ls $HOME
+      register: nombres_directorios
+
+    - name: Imprime mensaje si el directorio meses existe
+      debug:
+        msg: "Existe el directorio meses"
+      when: nombres_directorios.stdout | regex_search("meses")
+
+    - name: Valida si el directorio planetas existe 
+      stat:
+        path: $HOME/planetas
+      register: directorio_planetas
+
+    - name: Crea directorio solo si no existe
+      file:
+        path: $HOME/planetas
+        state: directory
+      when: not directorio_planetas.stat.exists
+
+    - name: Crea directorios dentro del directorio planetas 
+      file:
+        path: $HOME/planetas/{{ item }}
+        state: directory
+      with_items: "{{ directorios_a_crear }}"
+      when: directorio_planetas.stat.exists

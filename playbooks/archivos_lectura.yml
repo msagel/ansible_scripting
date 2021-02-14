@@ -1,0 +1,24 @@
+---
+
+- hosts: servers
+
+  vars:
+    directorios_a_crear: "{{ lookup('file','../archivos/directorios.txt').split('\n') }}"
+
+  tasks:
+    - name: Imprime cantidad de líneas en el archivo
+      debug:
+        msg: "{{ directorios_a_crear | length }}"
+
+    - name: Crea directorio
+      file:
+        path: $HOME/meses
+        state: directory
+
+    - name: Crea los directorios
+      file:
+        path: $HOME/meses/{{ item }}
+        state: directory
+      with_items: "{{ directorios_a_crear }}"
+
+ 

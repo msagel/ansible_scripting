@@ -1,0 +1,29 @@
+---
+
+- hosts: servers
+
+  vars:
+    continentes:
+      - America
+      - Africa
+      - Asia
+      - Europa
+      - Oceania
+
+  tasks:
+    - name: Uso de variable en el índice 0
+      debug:
+        msg: "{{ continentes [0] }}"
+
+    - name: Uso de variable en el índice 1
+      debug:
+        msg: "{{ continentes [1] }}"
+
+    - name: Uso de variable en el índice 2
+      debug:
+        msg: "{{ continentes [2] }}"
+
+    - name: Uso de variable en el índice 3
+      debug:
+        msg: "{{ continentes [3] }}"
+

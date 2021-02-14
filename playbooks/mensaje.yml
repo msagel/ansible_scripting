@@ -1,0 +1,14 @@
+---
+
+- hosts: servers
+  tasks:
+    - name: Playbook en Ansible
+      command: /bin/echo "Mensaje generado usando Ansible!!!!!"
+    - name: Obten la semana del año
+      command: date +%W
+    - name: Días transcurridos en el año
+      command: date +%j
+    - name: Año
+      command: date +%Y
+    - name: Nombre del host
+      command: hostname

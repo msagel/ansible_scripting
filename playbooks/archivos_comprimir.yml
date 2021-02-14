@@ -1,0 +1,12 @@
+---
+
+- hosts: servers
+
+  tasks:
+    - name: Comprime un directorio
+      archive:
+        path: $HOME/python_scripting
+        dest: $HOME/python.gz
+
+
+ 

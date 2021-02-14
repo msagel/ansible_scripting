@@ -1,0 +1,20 @@
+---
+
+- hosts: servers
+
+  vars:
+    directorio_bash: $HOME/bash_scripting/bin
+
+  tasks:
+    - name: Busca los archivos .sh
+      find:
+         paths: "{{ directorio_bash }}"
+         patterns: "*.sh"
+      register: lista_archivos
+
+    - name: Cambia los permisos a los archivos encontrados
+      file:
+         path: "{{ item.path }}"
+         state: file
+         mode: "0755"
+      with_items: "{{ lista_archivos.files }}"

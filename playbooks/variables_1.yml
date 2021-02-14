@@ -1,0 +1,11 @@
+---
+
+- hosts: servers
+
+  vars:
+    variable: Que ondas !!!
+
+  tasks:
+    - name: Uso de variable
+      debug:
+        msg: "{{ variable }}"

@@ -1,0 +1,18 @@
+---
+
+- hosts: servers
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Instala nginx
+      apt: 
+        name: nginx
+        state: latest
+        update_cache: yes
+
+    - name: Arranca nginx
+      service:
+        name: nginx
+        state: started       
+

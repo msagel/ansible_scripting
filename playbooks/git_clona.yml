@@ -1,0 +1,25 @@
+---
+
+- hosts: servers
+
+  tasks:
+    - name: Instala git
+      become: yes      
+      apt:
+        name: git
+        state: latest
+        update_cache: yes
+
+    - name: Crea directorios para repositorios
+      become_user: ubuntu
+      file:
+         path: $HOME/{{ item }}
+         state: directory
+      with_items: [ "bash_scripting", "python_scripting" ]
+
+    - name: Clona repositorios
+      become_user: ubuntu
+      git:
+         repo: https://github.com/HugoAquinoNavarrete/{{ item }}.git
+         dest: $HOME/{{ item }}
+      with_items: [ "bash_scripting", "python_scripting" ]

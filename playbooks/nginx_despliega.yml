@@ -1,0 +1,10 @@
+---
+
+- hosts: servers
+
+  tasks:
+    - name: Despliega en el sitio Web
+      become: true
+      synchronize:
+        dest: /var/www/html
+        src: ../web/

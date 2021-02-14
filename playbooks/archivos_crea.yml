@@ -1,0 +1,36 @@
+---
+
+- hosts: servers
+
+  tasks:
+    - name: Valida si el directorio templates existe
+      stat:
+        path: $HOME/templates
+      register: directorio_templates
+
+    - name: Crea el directorio templates si no existe
+      file:
+        path: $HOME/templates
+        state: directory
+      when: not directorio_templates.stat.exists
+
+    - name: Crea archivo muestra.yml
+      copy:
+        dest: $HOME/templates/muestra.yml
+        content: |
+          ---
+ 
+          - hosts: servers
+          tasks: Playbook en Ansible
+            command: /bin/echo "Aprendiendo Ansible"
+          
+    - name: Crea archivo muestra.sh
+      copy:
+        dest: $HOME/templates/muestra.sh
+        content: |
+          #!/bin/bash
+          # Primer script en bash shell
+
+          echo "Este es mi primer script en bash"
+          
+ 

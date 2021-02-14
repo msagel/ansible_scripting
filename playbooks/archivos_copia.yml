@@ -1,0 +1,19 @@
+---
+
+- hosts: servers
+
+  vars:
+    directorios: "{{ lookup('file','../archivos/directorios.txt').split('\n') }}"
+
+  tasks:
+    - name: Imprime cantidad de líneas en el archivo
+      debug:
+        msg: "{{ directorios | length }}"
+
+    - name: Copia un archivo local a los directorios creados en la VM
+      copy:
+        src: "../archivos/archivo.txt"
+        dest: $HOME/meses/{{ item }}
+      with_items: "{{ directorios }}"
+
+ 

@@ -1,0 +1,3 @@
+Este es un archivo que se transferirá a través de Ansible
+de un equipo a otro a fin de mostrar el uso de la copia de archivos
+Seguimos aprendiendo !!!

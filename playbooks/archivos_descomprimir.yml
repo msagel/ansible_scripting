@@ -1,0 +1,18 @@
+---
+
+- hosts: servers
+
+  tasks:
+    - name: Crea directorio para descomprimir
+      file:
+        path: $HOME/temp
+        state: directory
+
+    - name: Descomprime archivo python.gz al directorio temp
+      unarchive:
+        src: $HOME/python.gz
+        dest: $HOME/temp/
+        remote_src: yes
+
+
+ 

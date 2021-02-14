@@ -1,0 +1,14 @@
+---
+
+- hosts: servers
+  become_user: ubuntu
+
+  tasks:
+    - name: Crea directorios
+      file:
+         path: $HOME/{{ item }}
+         state: absent
+      with_items: [ 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis']
+
+
+

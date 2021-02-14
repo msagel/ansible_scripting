@@ -1,0 +1,11 @@
+---
+
+- hosts: servers
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Sube servicios nginx
+      service:
+        name: nginx
+        state: started

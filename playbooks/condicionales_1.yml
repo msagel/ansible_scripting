@@ -1,0 +1,20 @@
+---
+
+- hosts: servers
+
+  vars:
+    directorios_a_crear: "{{ lookup('file','../archivos/otros_directorios.txt').split('\n') }}"
+
+  tasks:
+    - name: Obten cantidad de directorios en $HOME
+      shell: ls $HOME | wc -l
+      register: cantidad_directorios
+
+    - name: Imprime cantidad de directorios
+      debug:
+        msg: "{{ cantidad_directorios.stdout }}"
+
+    - name: Imprime mensaje si la condición se cumple
+      debug:
+        msg: "Se cumplió la condición"
+      when: cantidad_directorios.stdout == "5"
