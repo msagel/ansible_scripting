@@ -26,4 +26,3 @@ Se encuentra un archivo de texto que usaremos cuando hagamos despliegues en ngin
 
 Se encuentra la presentaćión.
 
-xopa
